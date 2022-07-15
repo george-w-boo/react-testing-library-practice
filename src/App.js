@@ -1,19 +1,29 @@
 import { useState } from "react";
-import "./App.css";
+import { useToggle } from "./custom-hooks/useToggle";
+import { Button } from "./App.styles";
 
 function App() {
   const [btnColor, setBtnColor] = useState("red");
+  const [isBtnEnabled, setIsBtnEnabled] = useToggle(true);
 
   const newBtnColor = btnColor === "red" ? "blue" : "red";
 
   return (
     <div>
-      <button
+      <Button
         onClick={() => setBtnColor(newBtnColor)}
-        style={{ backgroundColor: btnColor }}
+        bgColor={btnColor}
+        disabled={!isBtnEnabled}
       >
         Change to {newBtnColor}
-      </button>
+      </Button>
+      <input
+        type="checkbox"
+        id="toggleBtn"
+        checked={!isBtnEnabled}
+        onChange={setIsBtnEnabled}
+      />
+      <label htmlFor="toggleBtn">Toggle btn ability</label>
     </div>
   );
 }
