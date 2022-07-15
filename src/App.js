@@ -3,20 +3,20 @@ import { Button } from "./App.styles";
 
 function App() {
   const [btnColor, setBtnColor] = useState("red");
-  const [isBtnEnabled, setIsBtnEnabled] = useState(true);
+  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
 
-  const newBtnColor = btnColor === "red" ? "blue" : "red";
+  let newBtnColor = btnColor === "red" ? "blue" : "red";
 
   const checkboxHandler = (e) => {
-    setIsBtnEnabled(!e.target.checked);
+    setIsBtnDisabled(e.target.checked);
   };
 
   return (
     <div>
       <Button
         onClick={() => setBtnColor(newBtnColor)}
-        bgColor={btnColor}
-        disabled={!isBtnEnabled}
+        bgColor={isBtnDisabled ? "grey" : btnColor}
+        disabled={isBtnDisabled}
       >
         Change to {newBtnColor}
       </Button>

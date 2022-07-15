@@ -37,3 +37,22 @@ test("checkbox functionality", () => {
   fireEvent.click(checkBox);
   expect(colorToggleBtn).toBeEnabled();
 });
+
+test("btn changes bg color when disabled", () => {
+  render(<App />);
+  const colorToggleBtn = screen.getByRole("button", { name: "Change to blue" });
+  const checkBox = screen.getByRole("checkbox", { name: "Toggle btn ability" });
+
+  fireEvent.click(checkBox);
+  expect(colorToggleBtn).toHaveStyleRule("background-color", "grey");
+
+  fireEvent.click(checkBox);
+  expect(colorToggleBtn).toHaveStyleRule("background-color", "red");
+
+  fireEvent.click(colorToggleBtn);
+  fireEvent.click(checkBox);
+  expect(colorToggleBtn).toHaveStyleRule("background-color", "grey");
+
+  fireEvent.click(checkBox);
+  expect(colorToggleBtn).toHaveStyleRule("background-color", "blue");
+});
