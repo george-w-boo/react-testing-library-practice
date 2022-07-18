@@ -10,11 +10,11 @@ test("btn has correct initial color and toggles color", () => {
 
   fireEvent.click(colorToggleBtn);
   expect(colorToggleBtn).toHaveStyle({ backgroundColor: "blue" });
-  expect(colorToggleBtn.textContent).toBe("Change to red");
+  expect(colorToggleBtn).toHaveTextContent("Change to red");
 
   fireEvent.click(colorToggleBtn);
   expect(colorToggleBtn).toHaveStyle({ backgroundColor: "red" });
-  expect(colorToggleBtn.textContent).toBe("Change to blue");
+  expect(colorToggleBtn).toHaveTextContent("Change to blue");
 });
 
 test("initial conditions", () => {
